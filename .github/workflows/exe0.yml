@@ -1,0 +1,39 @@
+name: exe0
+
+env:
+  EXE_DIR: exe0   # Global variable for the directory
+
+on:
+  push:
+    paths:
+      - 'exe0/main.c'
+  pull_request:
+    paths:
+      - 'exe0/main.c'
+
+jobs:
+  firmware_rubric_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: insper-embarcados/actions-firmware-rubric-check@v0
+        with:
+          c_file: ${{env.EXE_DIR}}/main.c
+          rubric_file: ${{env.EXE_DIR}}/rubric_firmware.yml
+
+  embedded_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: insper-embarcados/actions-embedded-check@v2
+        with:
+          c_file: ${{env.EXE_DIR}}/main.c
+          rtos: false
+
+  cppcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: insper-embarcados/actions-cppcheck@v1
+        with:
+          c_file: ${{env.EXE_DIR}}/main.c
