@@ -18,6 +18,7 @@ void btn_callback(uint gpio , uint32_t events){
       
   }
 
+  
   else if (gpio == botao_r){ 
     if (events == 0x4){
       check_r = !check_r;
