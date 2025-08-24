@@ -50,7 +50,7 @@ int main() {
     &btn_callback);
 
   gpio_set_irq_enabled(botao_g,
-    GPIO_IRQ_EDGE_FALL,
+    GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL,
     true);
 
   while (true) {
