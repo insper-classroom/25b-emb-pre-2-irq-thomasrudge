@@ -12,13 +12,13 @@ volatile int check_r = 0;
 
 void btn_callback(uint gpio , uint32_t events){
   if (gpio == botao_g){ 
-    if (events == 0x4){
+    if (events == 0x8){
       check_g = !check_g;
     }
       
   }
 
-  
+
   else if (gpio == botao_r){ 
     if (events == 0x4){
       check_r = !check_r;
